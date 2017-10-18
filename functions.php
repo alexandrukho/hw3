@@ -41,9 +41,9 @@ function task1()
     echo "</tr>";
     echo "</table>";
 //    ITEMS
-    foreach ($xml->Items->Item as $value){
+    foreach ($xml->Items->Item as $value) {
         echo "<h3>" . "Item № " . $value['PartNumber'] . "</h3>";
-        if(isset($value->Comment)){
+        if (isset($value->Comment)) {
             echo "<p style='color: #525252;'>" .
                 "Product Name: " . $value->ProductName . "<br>" .
                 "Quantity: " . $value->Quantity . "<br>" .
@@ -51,7 +51,7 @@ function task1()
                 "Comment: " . $value->Comment . "<br>" .
                 "</p>";
         }
-        if (isset($value->ShipDate)){
+        if (isset($value->ShipDate)) {
             echo "<p style='color: #525252;'>" .
                 "Product Name: " . $value->ProductName . "<br>" .
                 "Quantity: " . $value->Quantity . "<br>" .
@@ -64,3 +64,23 @@ function task1()
 }
 
 ;
+function task2()
+{
+    $my_arr = ['some text', 1, ['text', ['lorem']]];
+    file_put_contents('output.json', json_encode($my_arr));
+//    print_r($my_arr);
+    $random = rand(0, 1);
+    if ($random) {
+        $change_arr = json_decode(file_get_contents('output.json'));
+        $change_arr[] = 'MY CHANGE TEXT';
+        file_put_contents('output2.json', json_encode($change_arr));
+    }
+    $arr1 = json_decode(file_get_contents('output.json'));
+    $arr2 = json_decode(file_get_contents('output2.json'));
+    $result = array_diff($arr2, $arr1);
+    echo "<pre>";
+    print_r($result);
+}
+
+;
+
