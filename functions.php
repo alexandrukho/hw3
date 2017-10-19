@@ -95,4 +95,20 @@ function task3()
 }
 
 ;
+function task4()
+{
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json');
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    $result = json_decode(curl_exec($curl), true);
+    if ($result === false) {
+        echo 'cURL Error: ' . curl_error($curl);
+    }
+    curl_close($curl);
+    echo "<pre>";
+    foreach ($result[query][pages] as $val) {
+        echo '<b>' .'title: '. '</b>' . $val[title] . '<br>' . '<b>' .'Page id: '. '</b>' . $val[pageid];
 
+    }
+}
