@@ -83,4 +83,16 @@ function task2()
 }
 
 ;
+function task3()
+{
+    $rand_numbers = range(1, 100);
+    shuffle($rand_numbers);
+//    print_r($rand_numbers);
+    $file_csv = fopen('file.csv', 'r');
+    fputcsv($file_csv, $rand_numbers);
+    $fg = fgetcsv($file_csv);
+    print_r(array_sum($fg));
+}
+
+;
 
