@@ -1,12 +1,15 @@
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 function task1()
 {
     $xml = simplexml_load_file('data.xml');
     echo "<h3 style='color: #4b505d;'>" . "Заказ № " . $xml['PurchaseOrderNumber'] . "</h3>" .
-        "<h4 style='color: #4b505d;'>" . "Дата: " . $xml[OrderDate] . "</h4>" .
+        "<h4 style='color: #4b505d;'>" . "Дата: " . $xml['OrderDate'] . "</h4>" .
 //        SHIPPING TABLE
-        "<table style='border-collapse: collapse;width: 100%;text-align: center;'border='1px'>" .
-        "<h3>" . $xml->Address[0][Type] . "</h3>" .
+        "<table style='border-collapse: collapse;width: 100%;text-align: center;border:1px solid grey'>" .
+        "<h3>" . $xml->Address[0]['Type'] . "</h3>" .
         "<tr>" .
         "<th>Name</th>" .
         "<th>Street</th>" .
@@ -64,6 +67,7 @@ function task1()
 }
 
 ;
+//TODO - решить проблему с Array to string conversion
 function task2()
 {
     $my_arr = ['some text', 1, ['text', ['lorem']]];
@@ -82,7 +86,6 @@ function task2()
     print_r($result);
 }
 
-;
 function task3()
 {
     $rand_numbers = range(1, 100);
@@ -107,8 +110,8 @@ function task4()
     }
     curl_close($curl);
     echo "<pre>";
-    foreach ($result[query][pages] as $val) {
-        echo '<b>' .'title: '. '</b>' . $val[title] . '<br>' . '<b>' .'Page id: '. '</b>' . $val[pageid];
+    foreach ($result['query']['pages'] as $val) {
+        echo '<b>' . 'title: ' . '</b>' . $val['title'] . '<br>' . '<b>' . 'Page id: ' . '</b>' . $val['pageid'];
 
     }
 }
