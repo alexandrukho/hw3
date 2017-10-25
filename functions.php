@@ -28,7 +28,7 @@ function task1()
 //    BILLING TABLE
     echo
         "<table style='border-collapse: collapse;width: 100%;text-align: center;'border='1px'>" .
-        "<h3>" . $xml->Address[1][Type] . "</h3>" .
+        "<h3>" . $xml->Address[1]['Type'] . "</h3>" .
         "<tr>" .
         "<th>Name</th>" .
         "<th>Street</th>" .
@@ -70,7 +70,7 @@ function task1()
 //TODO - решить проблему с Array to string conversion
 function task2()
 {
-    $my_arr = ['some text', 1, ['text', ['lorem']]];
+    $my_arr = ['some text', 1, ['text', [2], 23]];
     file_put_contents('output.json', json_encode($my_arr));
 //    print_r($my_arr);
     $random = rand(0, 1);
@@ -81,7 +81,7 @@ function task2()
     }
     $arr1 = json_decode(file_get_contents('output.json'));
     $arr2 = json_decode(file_get_contents('output2.json'));
-    $result = array_diff($arr2, $arr1);
+    $result = array_diff_key($arr2, $arr1);
     echo "<pre>";
     print_r($result);
 }
